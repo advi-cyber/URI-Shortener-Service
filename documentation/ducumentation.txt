@@ -1,0 +1,92 @@
+URI Shortener Service - Project Documentation
+This document explains the architecture, features, workflow, API endpoints, and setup process of the URI Shortener Service project.
+1. Project Overview
+The URI Shortener Service is a backend web application developed using Node.js, Express.js, and MongoDB. The purpose of this project is to convert long URLs into short and shareable links. The service also tracks the number of clicks for each shortened URL.
+2. Objectives
+- Convert long URLs into short URLs
+- Store URLs in MongoDB Atlas
+- Redirect users using short codes
+- Track click statistics for shortened links
+- Build a RESTful API using Express.js
+3. Technologies Used
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- NanoID
+- Nodemon
+- dotenv
+4. Project Structure
+src/
+ ┣ controllers/
+ ┃ ┗ urlController.js
+ ┣ models/
+ ┃ ┗ Url.js
+ ┣ routes/
+ ┃ ┗ urlRoutes.js
+ ┗ server.js
+5. Features
+- Generate unique short URLs
+- Redirect to original URL
+- Store data in MongoDB
+- Track total clicks
+- REST API architecture
+- JSON request and response handling
+6. Database Schema
+The application uses a MongoDB collection with the following fields:
+
+originalUrl : Stores the original long URL
+shortCode : Stores the generated short code
+clicks : Stores total click count
+timestamps : Automatically stores createdAt and updatedAt
+7. API Endpoints
+1. POST /shorten
+Purpose: Create a shortened URL
+
+Request Body:
+{ "originalUrl": "https://google.com" }
+
+Response:
+{ "message": "Short URL created", "shortCode": "abc123" }
+
+2. GET /:shortCode
+Purpose: Redirect user to original URL
+
+3. GET /stats/:shortCode
+Purpose: Retrieve URL statistics
+
+Response:
+{ "originalUrl": "https://google.com", "shortCode": "abc123", "clicks": 5 }
+8. Workflow
+1. User sends a long URL using POST /shorten
+2. Server generates a unique short code using NanoID
+3. Data is stored in MongoDB Atlas
+4. User accesses shortened URL
+5. Server redirects to original URL
+6. Click count is updated
+9. Setup and Installation
+Step 1: Clone the repository
+git clone <repository-link>
+
+Step 2: Install dependencies
+npm install
+
+Step 3: Create .env file
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+
+Step 4: Run the server
+npm run dev
+10. Testing
+The API was tested using Postman. JSON requests were sent to the API endpoints to verify URL creation, redirection, and statistics functionality.
+11. Future Enhancements
+- User authentication
+- Custom short URLs
+- QR code generation
+- Expiration dates for URLs
+- Analytics dashboard
+12. Conclusion
+The URI Shortener Service successfully demonstrates backend development concepts including REST APIs, database integration, routing, controllers, and URL redirection using Node.js and MongoDB.
+
+Project Developed By:
+Advaita Praveen Kumar Parikkal
